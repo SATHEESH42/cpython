@@ -488,11 +488,7 @@ jobs:
       with:
         path: ${{ env.CPYTHON_BUILDDIR }}/.hypothesis/
         key: hypothesis-database-${{ github.head_ref || github.run_id }}
-        restore-keys: |
-          hypothesis-database- ${{ github.head_ref || github.run_id }}   
-    - name: Run Hypothesis tests
-      working-directory: ${{ env.CPYTHON_BUILDDIR }}
-      run: |
+        restore-keys: hypothesis-database
         # Most of the excluded tests are slow test suites with no property tests
         #
         # (GH-104097) test_sysconfig is skipped because it has tests that are
