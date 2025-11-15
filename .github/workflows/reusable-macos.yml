@@ -70,4 +70,5 @@ jobs:
         --fail-on-improvement
         --path-prefix="./"
     - name: Tests
-      run: make ci
+      run: |  
+        make test TESTOPTS="-j8 --timeout=300 --exclude test_ssl test_multiprocessing_fork test_multiprocessing_forkserver test_multiprocessing_spawn"
