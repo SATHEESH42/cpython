@@ -128,4 +128,10 @@ jobs:
       run: epubcheck Doc/build/epub/Python.epub &> Doc/epubcheck.txt
     - run: cat Doc/epubcheck.txt
     - name: 'Check for fatal errors in EPUB'
-      run: python Doc/tools/check-epub.py
+      run: |
+        if grep -q 'Fatal error' Doc/epubcheck.txt; then
+          echo "EPUB check failed due to fatal errors."
+          exit 1
+        else
+          echo "No fatal errors found in EPUB."
+        fi
